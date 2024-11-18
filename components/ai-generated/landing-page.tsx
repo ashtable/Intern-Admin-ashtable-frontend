@@ -1,20 +1,13 @@
+'use client'
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Home, Key, Building } from 'lucide-react'
+import { login } from "@/app/actions"
 
 export default function LandingPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle login logic here
-    console.log('Login attempted with:', email, password)
-  }
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 relative overflow-hidden">
       {/* Real estate themed background */}
@@ -27,27 +20,26 @@ export default function LandingPage() {
       </div>
 
       <Card className="w-full max-w-md z-10 shadow-xl bg-white">
-        <CardHeader className="space-y-1">
-          <div className="flex items-center justify-center mb-4">
-            <Home className="h-12 w-12 text-gray-600" />
-          </div>
-          <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">Intern Admin</CardTitle>
-          <CardDescription className="text-gray-500 text-center">
-            Empowering real estate with AI
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit}>
+        <form action={login}>
+          <CardHeader className="space-y-1">
+            <div className="flex items-center justify-center mb-4">
+              <Home className="h-12 w-12 text-gray-600" />
+            </div>
+            <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">Intern Admin</CardTitle>
+            <CardDescription className="text-gray-500 text-center">
+              Empowering real estate with AI
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-gray-700">Email</Label>
                 <div className="relative">
                   <Input
                     id="email"
+                    name="email"
                     placeholder="name@realestate.com"
                     type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                     required
                     className="pl-10 bg-gray-50 border-gray-300 focus:border-gray-500 focus:ring-gray-500"
                   />
@@ -59,9 +51,8 @@ export default function LandingPage() {
                 <div className="relative">
                   <Input
                     id="password"
+                    name="password"
                     type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                     required
                     className="pl-10 bg-gray-50 border-gray-300 focus:border-gray-500 focus:ring-gray-500"
                   />
@@ -69,13 +60,13 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-          </form>
-        </CardContent>
-        <CardFooter>
-          <Button className="w-full bg-gray-700 hover:bg-gray-800 text-white" type="submit">
-            Login to Administer Your AI Intern
-          </Button>
-        </CardFooter>
+          </CardContent>
+          <CardFooter>
+            <Button className="w-full bg-gray-700 hover:bg-gray-800 text-white" type="submit">
+              Login to Administer Your AI Intern
+            </Button>
+          </CardFooter>
+        </form>
       </Card>
     </div>
   )

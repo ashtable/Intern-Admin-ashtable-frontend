@@ -22,8 +22,8 @@ const fontBody = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Goldie AI",
-  description: "Your friendly AI assistant!",
+  title: "Intern Admin",
+  description: "Your Intern's Admin!",
 };
 
 export default function RootLayout({
