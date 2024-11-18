@@ -1,154 +1,98 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/bA46Bwcv4p2
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 'use client'
 
-import { useFormState } from "react-dom"
-
-import Image from "next/image"
-import Link from "next/link"
-
+import { useState } from 'react'
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Input } from "@/components/ui/input"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+import { Textarea } from "@/components/ui/textarea"
+import { Home, Send, Loader2 } from 'lucide-react'
+import { ScrollArea } from "@/components/ui/scroll-area"
 
-import { signOut } from "@/app/actions"
-import { invokeQuery } from "@/app/chat/actions"
+export default function AIInternCommandPage() {
+  const [command, setCommand] = useState('')
+  const [response, setResponse] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
-
-const initialState = null
-
-
-export default function ChatPageComponent() {
-  const [state, formAction] = useFormState(invokeQuery, initialState)
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+    // Simulating API call to AI service
+    try {
+      const result = await new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(`Command received: "${command}"\nAction: Added new lead "John Doe" to CRM and intern's todo list.`)
+        }, 1500)
+      })
+      setResponse(result as string)
+    } catch (error) {
+      setResponse('Error: Unable to process command. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+    setCommand('')
+  }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#FFF8F0]">
-      <header className="flex items-center justify-between px-6 py-4 bg-[#FFD9B3] shadow-md">
-        <div className="flex items-center gap-2">
-          <Image src="/puppy-profile-photo-cropped.jpg" alt="Golden Retriever" width={32} height={32} className="rounded-full" />
-          <h1 className="text-xl font-bold">Goldie, the AI Pup</h1>
-        </div>
-        <div className="flex items-center gap-4">
-          <Link href="/crawl" className="text-sm font-medium hover:underline" prefetch={false}>
-            Crawl Websites
-          </Link>
-          <form action={signOut}>
-            <Button type="submit" variant="ghost" size="icon" className="text-[#333] hover:bg-[#FFBF82] focus:ring-[#FFCB9A]">
-              <LogOutIcon className="h-5 w-5" />
-              <span className="sr-only">Sign Out</span>
-            </Button>
-          </form>
-        </div>
-      </header>
-      <main className="flex-1 px-6 py-8">
-        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg">
-          <div className="px-6 py-4 border-b">
-            <h2 className="text-2xl font-bold text-[#8C6239]">How can I help you today?</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 relative overflow-hidden p-4">
+      {/* Real estate themed background */}
+      <div className="absolute inset-0 z-0 opacity-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-white" />
+        <div className="absolute inset-0" style={{
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30 30 0zm0 10L10 30l20 20 20-20-20-20z' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+          backgroundSize: '60px 60px'
+        }} />
+      </div>
+
+      <Card className="w-full max-w-2xl z-10 shadow-xl bg-white">
+        <CardHeader className="space-y-1">
+          <div className="flex items-center justify-center mb-4">
+            <Home className="h-12 w-12 text-gray-600" />
           </div>
-          <div className="px-6 py-4 space-y-4 overflow-auto max-h-[500px]">
-            <div className="flex items-start gap-3">
-              <Avatar className="shrink-0">
-                <AvatarImage src="/puppy-profile-photo-cropped.jpg" />
-                <AvatarFallback>GR</AvatarFallback>
-              </Avatar>
-              <div className="flex-1 p-3 rounded-lg bg-[#FFF8F0]">
-                <p className="text-[#8C6239]">
-                  {state ? state : 'Hi there! I\'m Goldie, your friendly AI assistant. How can I help you today?'}
-                </p>
+          <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">AI Intern Command Center</CardTitle>
+          <CardDescription className="text-gray-500 text-center">
+            Use natural language to manage your AI intern's tasks
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Textarea
+                  placeholder="Enter your command here (e.g., 'Add John Doe as a new lead to the CRM and the intern&amp;s todo list')"
+                  value={command}
+                  onChange={(e) => setCommand(e.target.value)}
+                  required
+                  className="min-h-[100px] bg-gray-50 border-gray-300 focus:border-gray-500 focus:ring-gray-500"
+                />
               </div>
-            </div>
-          </div>
-          <div className="px-6 py-4 border-t">
-            <form action={formAction} className="flex items-center">
-              <Input
-                name="message"
-                id="message"
-                required
-                placeholder="Type your message..."
-                className="flex-1 bg-[#FFF8F0] border-none focus:ring-0"
-              />
-              <Button
+              <Button 
+                className="w-full bg-gray-700 hover:bg-gray-800 text-white" 
                 type="submit"
-                variant="ghost"
-                size="icon"
-                className="rounded-full hover:bg-[#FFE6CC] focus:bg-[#FFE6CC]"
+                disabled={isLoading}
               >
-                <SendIcon className="w-5 h-5 text-[#8C6239]" />
-                <span className="sr-only">Send</span>
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Processing
+                  </>
+                ) : (
+                  <>
+                    <Send className="mr-2 h-4 w-4" />
+                    Send Command
+                  </>
+                )}
               </Button>
-            </form>
+            </div>
+          </form>
+        </CardContent>
+        <CardFooter className="flex flex-col space-y-4">
+          <div className="w-full">
+            <h3 className="text-lg font-semibold text-gray-700 mb-2">AI Intern Response:</h3>
+            <ScrollArea className="h-[150px] w-full rounded border border-gray-200 bg-gray-50 p-4">
+              <pre className="text-sm text-gray-600 whitespace-pre-wrap">{response}</pre>
+            </ScrollArea>
           </div>
-        </div>
-      </main>
-      <footer className="bg-[#FFCB9A] py-4 px-6 text-center text-sm text-muted-foreground">
-        &copy; 2024 Goldie the AI Pup. All rights reserved.
-      </footer>
+        </CardFooter>
+      </Card>
     </div>
-  )
-}
-
-function LogOutIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-      <polyline points="16 17 21 12 16 7" />
-      <line x1="21" x2="9" y1="12" y2="12" />
-    </svg>
-  )
-}
-
-
-function SendIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m22 2-7 20-4-9-9-4Z" />
-      <path d="M22 2 11 13" />
-    </svg>
-  )
-}
-
-
-function XIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
   )
 }
