@@ -1,131 +1,82 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/72TYP8TcsJk
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-import Image from "next/image"
-import Link from "next/link"
-
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+import { useState } from 'react'
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
+import { Home, Key, Building } from 'lucide-react'
 
-import { login } from "@/app/actions"
+export default function LandingPage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Handle login logic here
+    console.log('Login attempted with:', email, password)
+  }
 
-export default function LandingPageComponent() {
   return (
-    <div className="flex flex-col min-h-[100dvh] bg-[#fdf2e9] text-[#333]">
-      <header className="px-4 lg:px-6 h-14 flex items-center">
-        <Link href="#" className="flex items-center justify-center" prefetch={false}>
-          <DogIcon className="h-8 w-8 text-[#e67e22]" />
-          <h1 className="text-xl font-bold">Goldie, the AI Pup</h1>
-        </Link>
-      </header>
-      <main className="flex-1 container mx-auto px-4 md:px-6 py-12 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div>
-          <Image
-            src="/puppy-photo-cropped.jpg"
-            width={600}
-            height={600}
-            alt="Golden Retriever Puppy"
-            className="rounded-2xl shadow-lg"
-          />
-        </div>
-        <div className="space-y-6">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold">Meet Goldie, your friendly AI assistant</h1>
-            <p className="text-muted-foreground text-lg mt-2">
-              Goldie is a golden retriever themed AI chatbot that&apos;s here to help you with all your questions and tasks.
-            </p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 relative overflow-hidden">
+      {/* Real estate themed background */}
+      <div className="absolute inset-0 z-0 opacity-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-white" />
+        <div className="absolute inset-0" style={{
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30 30 0zm0 10L10 30l20 20 20-20-20-20z' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+          backgroundSize: '60px 60px'
+        }} />
+      </div>
+
+      <Card className="w-full max-w-md z-10 shadow-xl bg-white">
+        <CardHeader className="space-y-1">
+          <div className="flex items-center justify-center mb-4">
+            <Home className="h-12 w-12 text-gray-600" />
           </div>
-          <Card className="p-6 bg-white rounded-2xl shadow-lg">
-            <CardHeader>
-              <CardTitle>Sign in to Goldie</CardTitle>
-            </CardHeader>
-            <form action={login}>
-              <CardContent className="space-y-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input name="email" id="email" type="email" placeholder="m@example.com" />
+          <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">Intern Admin</CardTitle>
+          <CardDescription className="text-gray-500 text-center">
+            Empowering real estate with AI
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-gray-700">Email</Label>
+                <div className="relative">
+                  <Input
+                    id="email"
+                    placeholder="name@realestate.com"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="pl-10 bg-gray-50 border-gray-300 focus:border-gray-500 focus:ring-gray-500"
+                  />
+                  <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="password">Password</Label>
-                  <Input name="password" id="password" type="password" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password" className="text-gray-700">Password</Label>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="pl-10 bg-gray-50 border-gray-300 focus:border-gray-500 focus:ring-gray-500"
+                  />
+                  <Key className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 </div>
-              </CardContent>
-              <CardFooter className="flex justify-between items-center">
-                <Link href="#" className="text-sm text-[#ffc107] hover:underline" prefetch={false}>
-                  Forgot password?
-                </Link>
-                <Button
-                  type="submit"
-                  className="rounded-md border border-transparent bg-[#ffc107] py-2 px-4 text-sm font-medium text-[#333] hover:bg-[#ffdb4d] focus:outline-none focus:ring-2 focus:ring-[#ffc107] focus:ring-offset-2"
-                >
-                Sign in
-                </Button>
-              </CardFooter>
-            </form>
-          </Card>
-          <div className="text-center">
-            <p className="text-muted-foreground">
-              Don&apos;t have an account?{" "}
-              <Link href="/signup" className="text-[#ffc107] hover:underline" prefetch={false}>
-                Sign up
-              </Link>
-            </p>
-          </div>
-        </div>
-      </main>
-      <footer className="bg-[#FFCB9A] py-4 px-6 text-center text-sm text-muted-foreground">
-        &copy; 2024 Goldie the AI Pup. All rights reserved.
-      </footer>
+              </div>
+            </div>
+          </form>
+        </CardContent>
+        <CardFooter>
+          <Button className="w-full bg-gray-700 hover:bg-gray-800 text-white" type="submit">
+            Login to Administer Your AI Intern
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
-  )
-}
-
-function DogIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#ffc107"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5" />
-      <path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5" />
-      <path d="M8 14v.5" />
-      <path d="M16 14v.5" />
-      <path d="M11.25 16.25h1.5L12 17l-.75-.75Z" />
-      <path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306" />
-    </svg>
-  )
-}
-
-
-function XIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
   )
 }
