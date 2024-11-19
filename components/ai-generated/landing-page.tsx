@@ -25,7 +25,7 @@ export default function LandingPage() {
             </div>
             <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">Intern Admin</CardTitle>
             <CardDescription className="text-gray-500 text-center">
-              Empowering real estate with AI
+              Empowering Real Estate with AI
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -36,7 +36,7 @@ export default function LandingPage() {
                   <Input
                     id="email"
                     name="email"
-                    placeholder="name@realestate.com"
+                    placeholder="name@yourcompany.com"
                     type="email"
                     required
                     className="pl-10 bg-gray-50 border-gray-300 focus:border-gray-500 focus:ring-gray-500"
@@ -61,7 +61,7 @@ export default function LandingPage() {
           </CardContent>
           <CardFooter>
             <Button className="w-full bg-gray-700 hover:bg-gray-800 text-white" type="submit">
-              Login to Administer Your AI Intern
+              Login to Configure Your Team&amp;s AI
             </Button>
           </CardFooter>
         </form>

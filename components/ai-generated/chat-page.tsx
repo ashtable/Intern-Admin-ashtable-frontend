@@ -49,7 +49,7 @@ export default function AIInternCommandPage() {
           </div>
           <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">AI Intern Command Center</CardTitle>
           <CardDescription className="text-gray-500 text-center">
-            Use natural language to manage your AI intern&amp;s tasks
+            Use natural language to configure your team&amp;s AI 
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -86,7 +86,7 @@ export default function AIInternCommandPage() {
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
           <div className="w-full">
-            <h3 className="text-lg font-semibold text-gray-700 mb-2">AI Intern Response:</h3>
+            <h3 className="text-lg font-semibold text-gray-700 mb-2">Response:</h3>
             <ScrollArea className="h-[150px] w-full rounded border border-gray-200 bg-gray-50 p-4">
               <pre className="text-sm text-gray-600 whitespace-pre-wrap">{response}</pre>
             </ScrollArea>
