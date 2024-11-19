@@ -50,7 +50,7 @@ export default function WebContentCrawlerPage() {
           </div>
           <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">Web Content Crawler</CardTitle>
           <CardDescription className="text-gray-500 text-center">
-            Add web content to your AI intern&amp;s knowledgebase
+            Add web content to your team&apos;s AI knowledgebase
           </CardDescription>
         </CardHeader>
         <CardContent>

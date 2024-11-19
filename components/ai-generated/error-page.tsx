@@ -28,7 +28,7 @@ export default function ErrorPage() {
         <CardContent className="flex flex-col items-center space-y-4">
           <AlertTriangle className="h-16 w-16 text-red-500" />
           <p className="text-center text-gray-600">
-            We&amp;re sorry, but it seems there was an issue processing your request. Our team has been notified and is working on resolving it.
+            We&apos;re sorry, but it seems there was an issue processing your request. Our team has been notified and is working on resolving it.
           </p>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">

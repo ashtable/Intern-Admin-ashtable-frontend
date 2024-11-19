@@ -61,7 +61,7 @@ export default function LandingPage() {
           </CardContent>
           <CardFooter>
             <Button className="w-full bg-gray-700 hover:bg-gray-800 text-white" type="submit">
-              Login to Configure Your Team&amp;s AI
+              Login to Configure Your Team&apos;s AI
             </Button>
           </CardFooter>
         </form>

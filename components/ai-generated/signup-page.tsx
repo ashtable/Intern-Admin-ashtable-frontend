@@ -37,7 +37,7 @@ export default function SignupPage() {
           </div>
           <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">Create Account</CardTitle>
           <CardDescription className="text-gray-500 text-center">
-            Sign up to configure your team&amp;s AI
+            Sign up to configure your team&apos;s AI
           </CardDescription>
         </CardHeader>
         <CardContent>

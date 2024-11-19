@@ -47,9 +47,9 @@ export default function AIInternCommandPage() {
           <div className="flex items-center justify-center mb-4">
             <Home className="h-12 w-12 text-gray-600" />
           </div>
-          <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">Your Team&amp;s AI Command Center</CardTitle>
+          <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">Your Team&apos;s AI Command Center</CardTitle>
           <CardDescription className="text-gray-500 text-center">
-            Use natural language to configure your team&amp;s AI 
+            Use natural language to configure your team&apos;s AI 
           </CardDescription>
         </CardHeader>
         <CardContent>
