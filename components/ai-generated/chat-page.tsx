@@ -47,7 +47,7 @@ export default function AIInternCommandPage() {
           <div className="flex items-center justify-center mb-4">
             <Home className="h-12 w-12 text-gray-600" />
           </div>
-          <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">AI Intern Command Center</CardTitle>
+          <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">Your Team&amp;s AI Command Center</CardTitle>
           <CardDescription className="text-gray-500 text-center">
             Use natural language to configure your team&amp;s AI 
           </CardDescription>
@@ -57,7 +57,7 @@ export default function AIInternCommandPage() {
             <div className="space-y-4">
               <div className="space-y-2">
                 <Textarea
-                  placeholder="Enter your command here (e.g., 'Add John Doe as a new lead to the CRM and the intern&amp;s todo list')"
+                  placeholder="Enter your command here (e.g., 'Add Task XYZ in the CRM for members of my team following first contact with all leads')"
                   value={command}
                   onChange={(e) => setCommand(e.target.value)}
                   required
