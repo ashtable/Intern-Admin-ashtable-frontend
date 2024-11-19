@@ -49,7 +49,7 @@ export default function AIInternCommandPage() {
           </div>
           <CardTitle className="text-2xl font-bold tracking-tight text-gray-800 text-center">AI Intern Command Center</CardTitle>
           <CardDescription className="text-gray-500 text-center">
-            Use natural language to manage your AI intern's tasks
+            Use natural language to manage your AI intern&amp;s tasks
           </CardDescription>
         </CardHeader>
         <CardContent>
