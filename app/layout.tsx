@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 
 import { cn } from "@/lib/utils"
 
-
+import { CSPostHogProvider } from "./providers";
 
 const fontHeading = Inter({
   subsets: ['latin'],
@@ -33,16 +33,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body 
-        className={cn(
-          'antialiased',
-          fontHeading.variable,
-          fontBody.variable
-        )}
-      >
-        {children}
-        <Toaster />
-      </body>
+      <CSPostHogProvider>
+        <body 
+          className={cn(
+            'antialiased',
+            fontHeading.variable,
+            fontBody.variable
+          )}
+        >
+          {children}
+          <Toaster />
+        </body>
+      </CSPostHogProvider>
     </html>
   );
 }
