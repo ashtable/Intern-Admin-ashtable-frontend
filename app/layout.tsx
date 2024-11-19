@@ -22,8 +22,8 @@ const fontBody = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Intern Admin",
-  description: "Your Intern's Admin!",
+  title: "AI Configuration",
+  description: "Configure Your Team's AI!",
 };
 
 export default function RootLayout({
